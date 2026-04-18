@@ -1,89 +1,61 @@
-let students = JSON.parse(localStorage.getItem("students")) || [];
-let editIndex = -1;
-
-displayStudents();
+loadStudents();
 
 function addStudent(){
 
-    let name = document.getElementById("name").value.trim();
-    let roll = document.getElementById("roll").value.trim();
-    let course = document.getElementById("course").value.trim();
-    let email = document.getElementById("email").value.trim();
+let data = {
+name: document.getElementById("name").value,
+roll: document.getElementById("roll").value,
+course: document.getElementById("course").value,
+email: document.getElementById("email").value
+};
 
-    if(name=="" || roll=="" || course=="" || email==""){
-        alert("Please fill all details");
-        return;
-    }
-
-    let student = {
-        name:name,
-        roll:roll,
-        course:course,
-        email:email
-    };
-
-    if(editIndex==-1){
-        students.push(student);
-    }else{
-        students[editIndex]=student;
-        editIndex=-1;
-        document.getElementById("mainBtn").innerText="Add Student";
-    }
-
-    localStorage.setItem("students", JSON.stringify(students));
-
-    clearFields();
-    displayStudents();
+fetch("/add",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(data)
+})
+.then(res=>res.json())
+.then(data=>{
+loadStudents();
+});
 }
 
-function displayStudents(){
+function loadStudents(){
 
-    let table = document.getElementById("studentTable");
-    table.innerHTML="";
+fetch("/students")
+.then(res=>res.json())
+.then(data=>{
 
-    students.forEach((student,index)=>{
+let table = document.getElementById("studentTable");
+table.innerHTML="";
 
-        table.innerHTML += `
-        <tr>
-            <td>${index+1}</td>
-            <td>${student.name}</td>
-            <td>${student.roll}</td>
-            <td>${student.course}</td>
-            <td>${student.email}</td>
-            <td>
-                <button class="edit-btn" onclick="editStudent(${index})">Edit</button>
-                <button class="delete-btn" onclick="deleteStudent(${index})">Delete</button>
-            </td>
-        </tr>
-        `;
-    });
+data.forEach(row=>{
+
+table.innerHTML += `
+<tr>
+<td>${row[0]}</td>
+<td>${row[1]}</td>
+<td>${row[2]}</td>
+<td>${row[3]}</td>
+<td>${row[4]}</td>
+<td>
+<button onclick="deleteStudent(${row[0]})">Delete</button>
+</td>
+</tr>
+`;
+
+});
+
+});
 }
 
-function editStudent(index){
+function deleteStudent(id){
 
-    document.getElementById("name").value = students[index].name;
-    document.getElementById("roll").value = students[index].roll;
-    document.getElementById("course").value = students[index].course;
-    document.getElementById("email").value = students[index].email;
-
-    editIndex=index;
-
-    document.getElementById("mainBtn").innerText="Update Student";
-}
-
-function deleteStudent(index){
-
-    students.splice(index,1);
-
-    localStorage.setItem("students", JSON.stringify(students));
-
-    displayStudents();
-}
-
-function clearFields(){
-
-    document.getElementById("name").value="";
-    document.getElementById("roll").value="";
-    document.getElementById("course").value="";
-    document.getElementById("email").value="";
+fetch("/delete/"+id,{
+method:"DELETE"
+})
+.then(res=>res.json())
+.then(data=>{
+loadStudents();
+});
 }
