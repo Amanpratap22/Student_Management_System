@@ -1,0 +1,114 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:30px;
+    background:linear-gradient(135deg,#d7d7d7,#a9a9a9,#c0c0c0);
+}
+
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:auto;
+    background:rgba(255,255,255,0.85);
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    backdrop-filter:blur(6px);
+}
+
+h1{
+    text-align:center;
+    color:#111;
+    margin-bottom:25px;
+}
+
+.form-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-bottom:25px;
+}
+
+input{
+    padding:12px;
+    border:1px solid #999;
+    border-radius:8px;
+    font-size:15px;
+    background:rgba(255,255,255,0.8);
+}
+
+input:focus{
+    outline:none;
+    border-color:#000;
+}
+
+/* Light Pink Add Student Button */
+#mainBtn{
+    background:#ffb6c1;
+    color:black;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+}
+
+#mainBtn:hover{
+    background:#ff9eb5;
+}
+
+.table-box{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    border:2px solid #000;
+}
+
+th{
+    background:#000;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:10px;
+    text-align:center;
+    border:1px solid #000;
+}
+
+tr:nth-child(even){
+    background:rgba(230,230,230,0.8);
+}
+
+tr:hover{
+    background:rgba(210,210,210,0.9);
+}
+
+.edit-btn{
+    background:green;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.delete-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-left:5px;
+}
