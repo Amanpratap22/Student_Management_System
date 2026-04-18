@@ -1,51 +1,128 @@
-body{
-font-family:Arial;
-background:#d3d3d3;
-padding:30px;
+body {
+  font-family: Arial;
+  background: #d9d9d9;   /* grey background */
+  margin: 0;
 }
 
-.container{
-background:white;
-padding:20px;
-border-radius:10px;
-width:90%;
-margin:auto;
+/* MAIN CONTAINER */
+.container {
+  width: 85%;
+  margin: auto;
+  padding: 20px;
 }
 
-h1{
-text-align:center;
+h1 {
+  text-align: center;
+  color: #222;
 }
 
-.form-box{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:10px;
-margin-bottom:20px;
+/* CARD STYLE */
+.card {
+  background: white;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-input,button{
-padding:10px;
+/* INPUT GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-button{
-background:pink;
-border:none;
-cursor:pointer;
+/* INPUT FIELDS */
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
+/* REMOVE NUMBER INPUT ARROWS */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-th{
-background:black;
-color:white;
-padding:10px;
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
-td{
-border:1px solid black;
-padding:8px;
-text-align:center;
+/* REMOVE FOCUS BLUE GLOW */
+input:focus,
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* DEFAULT BUTTON (ADD STUDENT - PINK) */
+button {
+  padding: 10px 15px;
+  background: #ff4da6;   /* pink */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e60073;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+/* TABLE HEADER (BLACK) */
+th {
+  background: black;
+  color: white;
+  padding: 12px;
+}
+
+/* TABLE CELLS */
+td {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #bbb;
+}
+
+/* ROW HOVER */
+tr:hover {
+  background: #eee;
+}
+
+/* DELETE BUTTON (RED) */
+td button:nth-child(1) {
+  background: red;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+td button:nth-child(1):hover {
+  background: darkred;
+}
+
+/* EDIT BUTTON (GREEN) */
+td button:nth-child(2) {
+  background: green;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+td button:nth-child(2):hover {
+  background: darkgreen;
 }
